@@ -1,0 +1,64 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <h2 mat-dialog-title>
+      <mat-icon>account_circle</mat-icon>
+      Edit user
+    </h2>
+    <mat-dialog-content fxLayout="column">
+      <mat-form-field>
+        <label for="name">Name:</label>
+        <input
+          [(ngModel)]="data.name"
+          matInput
+          text
+          required
+          #nameInput="ngModel"
+          name="name"
+          type="text"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <label for="email"> Email: </label>
+        <input
+          [(ngModel)]="data.email"
+          matInput
+          email
+          required
+          #emailInput="ngModel"
+          name="email"
+          type="email"
+        />
+      </mat-form-field>
+      <mat-form-field>
+        <label for="password"> Password: </label>
+        <input
+          [(ngModel)]="data.pword"
+          matInput
+          password
+          required
+          #passwordInput="ngModel"
+          name="password"
+          type="password"
+        />
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button
+        mat-raised-button
+        mat-dialog-close="true"
+        color="accent"
+        type="submit"
+      >
+        Submit
+      </button>
+      <button mat-raised-button mat-dialog-close="false" color="warn">
+        Close
+      </button>
+    </mat-dialog-actions>
+  </form>
+</section>

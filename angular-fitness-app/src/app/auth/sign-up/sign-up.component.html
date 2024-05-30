@@ -1,0 +1,89 @@
+<section>
+  <form
+    class="form"
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        ngModel
+        matInput
+        required
+        #textInput="ngModel"
+        name="name"
+        placeholder="Name:"
+        type="text"
+      />
+      @if (emailInput.hasError('required')) {
+      <mat-error>Field should not be empty!</mat-error>
+      }@else {<mat-error>Enter the correct format!</mat-error>}
+    </mat-form-field>
+    <mat-form-field [hideRequiredMarker]="true" appearance="fill">
+      <mat-label>Email:</mat-label>
+      <input
+        ngModel
+        matInput
+        email
+        required
+        #emailInput="ngModel"
+        name="email"
+        placeholder="ex. name@name.name"
+        type="email"
+      />
+      @if (emailInput.hasError('required')) {
+      <mat-error>Field should not be empty!</mat-error>
+      }@else {<mat-error>Enter the correct format!</mat-error>}
+    </mat-form-field>
+    <mat-form-field hintLabel="Password must contain a minimum of 8 characters">
+      <input
+        ngModel
+        matInput
+        required
+        password
+        type="password"
+        #passInput="ngModel"
+        minlength="8"
+        name="pword"
+        placeholder="Password:"
+      />
+      <mat-hint align="end">
+        @if (passInput.value?.length < 8){
+        {{ passInput.value?.length }} / 8 }@else {&#x2705;}
+        <!-- pripadaju mat form fieldu, imas mat error messages-e
+        oko za show password... -->
+      </mat-hint>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        ngModel
+        dateType="Date"
+        matInput
+        required
+        [matDatepicker]="picker"
+        name="birhtDate"
+        placeholder="Date of birth"
+      />
+      <mat-datepicker-toggle matIconSuffix [for]="picker">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker> </mat-datepicker>
+    </mat-form-field>
+    <mat-checkbox ngModel required name="acceptance" color="primary"
+      >I accept the terms of conditions of use</mat-checkbox
+    >
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="f.invalid"
+    >
+      Submit
+    </button>
+    @if (errorExists) {
+    <mat-label> {{ errorText }} </mat-label>
+    }
+    <mat-label>Already have an account?</mat-label>
+    <a mat-button color="primary" routerLink="/log-in">Log in</a>
+  </form>
+</section>

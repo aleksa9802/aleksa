@@ -1,0 +1,49 @@
+<section>
+  <form
+    fxLayout="column"
+    fxLayoutAlign="center center"
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+  >
+    <mat-form-field>
+      <input
+        ngModel
+        matInput
+        email
+        required
+        name="email"
+        placeholder="Email:"
+        type="email"
+        #emailInput="ngModel"
+      />
+      @if (emailInput.hasError('required')) {
+      <mat-error>Field should not be empty!</mat-error>
+      }@else {<mat-error>Enter the correct format!</mat-error>}
+    </mat-form-field>
+    <mat-form-field hintLabel="Password must contain a minimum of 8 characters">
+      <input
+        ngModel
+        matInput
+        required
+        #passInput="ngModel"
+        minlength="8"
+        name="password"
+        placeholder="Password:"
+        type="password"
+      />
+      <mat-hint align="end">
+        {{ passInput.value?.length }} / 8
+        <!-- pripadaju mat form fieldu, imas mat error messages-e
+          oko za show password... -->
+      </mat-hint>
+    </mat-form-field>
+    <button mat-raised-button color="primary" [disabled]="f.invalid">
+      Log in
+    </button>
+    @if (errorExists) {
+    <mat-label> {{ errorText }} </mat-label>
+    }
+    <mat-label>Dont have an account?</mat-label>
+    <a mat-button color="primary" routerLink="/sign-up">Sign up</a>
+  </form>
+</section>

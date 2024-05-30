@@ -1,0 +1,56 @@
+<router-outlet></router-outlet>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav opened="true">
+    <div>
+      <button (click)="sidenav.toggle()"><mat-icon>menu</mat-icon></button>
+    </div>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/sign-up" (click)="sidenav.close()">
+        <mat-icon>manage_accounts</mat-icon>Sign up</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/log-in" (click)="sidenav.close()">
+        <mat-icon>login</mat-icon>Log in</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/training" (click)="sidenav.close()">
+        <mat-icon>fitness_center</mat-icon>
+        Training</a
+      >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/" (click)="sidenav.close()">
+        <mat-icon>logout</mat-icon>Log out</a
+      >
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" fxLayout="row">
+      <div fxHide.gt-sm>
+        <button (click)="sidenav.toggle()">
+          <mat-icon>menu</mat-icon>
+        </button>
+      </div>
+      <div fxFlex fxLayoutAlign="space-between end">
+        <a routerLink="">Logo</a>
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="openProfile(this.userService.currentUser.id)"
+        >
+          {{ this.userService.currentUser.email }}
+        </button>
+      </div>
+      <div fxFlex fxLayoutAlign="end" fxLayoutGap="15px" fxHide.sm fxHide.xs>
+        <a routerLink="/sign-up">Sign up</a>
+        <a routerLink="/log-in">Log in</a>
+        <a routerLink="/training">Training</a>
+      </div>
+    </mat-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+<!-- https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Flexbox -->
+<!-- !!!!!https://github.com/angular/flex-layout/wiki/Responsive-API!!!!!! -->

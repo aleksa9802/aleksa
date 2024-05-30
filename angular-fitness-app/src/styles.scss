@@ -1,0 +1,77 @@
+//@import "@angular/material/prebuilt-themes/deeppurple-amber.css";
+/*package.json tu su sve verzije instaliranih biblioteka 
+angular.json, tu menjamo 
+ako sve pukne mozemo npm rebuild -node-scss -da radimo 
+
+*/
+
+@use "@angular/material" as mat;
+
+@include mat.core();
+
+// Define a dark theme
+$dark-theme: mat.define-dark-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$green-palette),
+      accent: mat.define-palette(mat.$teal-palette),
+    ),
+  )
+);
+
+// Define a light theme
+$light-theme: mat.define-light-theme(
+  (
+    color: (
+      primary: mat.define-palette(mat.$indigo-palette),
+      accent: mat.define-palette(mat.$pink-palette),
+    ),
+  )
+);
+@include mat.all-component-themes($dark-theme);
+
+.theme-light {
+  @include mat.all-component-colors($light-theme);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+mat-sidenav-container,
+mat-sidenav-content,
+mat-sidenav {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 600px;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+a:hover,
+a:active {
+  color: gray;
+}
+.backdropBackground {
+  background-color: #bbbbbbf2;
+  backdrop-filter: blur(4px);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
